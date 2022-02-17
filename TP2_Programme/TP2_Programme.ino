@@ -1,7 +1,7 @@
 
-#define LED_ROUGE 8
-#define LED_BLEUE 13
-#define LED_VERTE 7
+#define LED_ROUGE 9
+#define LED_BLEUE 5
+#define LED_VERTE 6
 
 const int chaud = 24; 
 const int froid = 17; 
