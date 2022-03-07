@@ -18,6 +18,7 @@ void setup() {
   pinMode(LED_VERTE, OUTPUT);
   Serial.begin(9600);
 }
+
 void loop() {
   getTemp();
   checkSerial();
@@ -43,7 +44,13 @@ void checkSerial() {
     String validator = command.substring(separator, command.length()-1);
 
     // Si la commande est GetTemp
-    if (datas == "GetTemp") Serial.println(tempC);
+    if (datas == "GetTemp") {
+      Serial.print("C");
+      Serial.print(tempC);
+      Serial.print("|");
+      Serial.print(tempC*10);
+      Serial.println("T");
+    }
 
     // Si la commande ne contient pas SetTemp on ne fait rien
     if (datas.indexOf("SetTemp") == -1) return;
@@ -59,6 +66,11 @@ void checkSerial() {
     char hotCold = datas[0];
     datas = datas.substring(separator+1);
     int temp = datas.toInt();
+
+    int tempValidator = validator.toInt();
+    tempValidator /= 10;
+
+    if (tempValidator != temp) return;
     
     if (hotCold == 'F') froid = temp;
     else if (hotCold == 'C') chaud = temp;
