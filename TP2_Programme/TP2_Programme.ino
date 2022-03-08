@@ -22,8 +22,7 @@ void setup() {
 void loop() {
   getTemp();
   checkSerial();
-  
-  delay(1000);
+  delay(250);
 }
 
 // Permet de check si le serial reçoit une commande
@@ -45,10 +44,10 @@ void checkSerial() {
 
     // Si la commande est GetTemp
     if (datas == "GetTemp") {
-      Serial.print("C");
+      Serial.print("C1");
       Serial.print(tempC);
       Serial.print("|");
-      Serial.print(tempC*10);
+      Serial.print(tempC*2);
       Serial.println("T");
     }
 
